@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Productos - KL Virtual Solutions</title>
+  <link rel="stylesheet" href="styleprod.css" />
+</head>
+<body>
+  <div class="overlay">
+  <header>
+    <h1>Nuestros Productos</h1>
+    <p>Explora nuestras laptops disponibles y elige la ideal para ti</p>
+    <a href="carrito.html" class="carrito">🛒 Ir al carrito</a>
+  </header>
+<section class="filtros">
+  <label for="procesador">Procesador:</label>
+  <select id="procesador">
+    <option value="">Todos</option>
+    <option value="8650U">i7-8650U</option>
+    <option value="8665U">i7-8665U</option>
+    <option value="8550U">i7-8550U</option>
+  </select>
+
+  <label for="pantalla">Tamaño:</label>
+  <select id="pantalla">
+    <option value="">Todos</option>
+    <option value="13">13"</option>
+    <option value="14">14"</option>
+  </select>
+</section>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const filtroProc = document.getElementById("procesador");
+  const filtroPant = document.getElementById("pantalla");
+
+  filtroProc.addEventListener("change", filtrarProductos);
+  filtroPant.addEventListener("change", filtrarProductos);
+
+  function filtrarProductos() {
+    const proc = filtroProc.value;
+    const pant = filtroPant.value;
+    document.querySelectorAll(".producto").forEach(p => {
+      const texto = p.textContent;
+      const mostrar =
+        (proc === "" || texto.includes(proc)) &&
+        (pant === "" || texto.includes(pant + '"'));
+      p.style.display = mostrar? "block": "none";
+});
+}
+});
+</script>
+  <main class="contenedor">
+    <!-- Producto 1 -->
+    <div class="producto">
+      <img src="img/latitude7290.jpg" alt="Dell Latitude 7290" />
+      <h2>Dell Latitude 7290 13"</h2>
+      <p>Intel Core i7-8650U | 8GB RAM | 256GB SSD</p>
+      <button onclick="agregarAlCarrito('Dell Latitude 7290 13\"', 'Intel Core i7-8650U | 8GB RAM | 256GB SSD')">Agregar al carrito</button>
+    </div>
+
+    <!-- Producto 2 -->
+    <div class="producto">
+      <img src="img/latitude5300.jpg" alt="Dell Latitude 5300 2 en 1" />
+      <h2>Dell Latitude 5300 2 en 1 13"</h2>
+      <p>Intel Core i7-8665U | 8GB RAM | 256GB SSD</p>
+      <button onclick="agregarAlCarrito('Dell Latitude 5300 2 en 1 13\"', 'Intel Core i7-8665U | 8GB RAM | 256GB SSD')">Agregar al carrito</button>
+    </div>
+
+    <!-- Producto 3 -->
+    <div class="producto">
+      <img src="img/latitude3490.jpg" alt="Dell Latitude 3490" />
+      <h2>Dell Latitude 3490 14"</h2>
+      <p>Intel Core i7-8550U | 8GB RAM | 256GB SSD</p>
+      <button onclick="agregarAlCarrito('Dell Latitude 3490 14\"', 'Intel Core i7-8550U | 8GB RAM | 256GB SSD')">Agregar al carrito</button>
+    </div>
+
+    <!-- Producto 4 -->
+    <div class="producto">
+      <img src="img/latitude7400.jpg" alt="Dell Latitude 7400" />
+      <h2>Dell Latitude 7400 14"</h2>
+      <p>Intel Core i7-8665U | 8GB RAM | 256GB SSD</p>
+      <button onclick="agregarAlCarrito('Dell Latitude 7400 14\"', 'Intel Core i7-8665U | 8GB RAM | 256GB SSD')">Agregar al carrito</button>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 KL Virtual Solutions. Todos los derechos reservados.
+  </footer>
+  <script>
+function agregarAlCarrito(nombre, descripcion) {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  carrito.push({ nombre, descripcion});
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  alert(`${nombre} fue agregado al carrito.`);
+}
+</script>
+
+</body>
+</html>
