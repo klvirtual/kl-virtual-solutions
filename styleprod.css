@@ -38,7 +38,25 @@ header.carrito {
   text-decoration: none;
   font-weight: bold;
 }
+/* Navegación */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 15px 0;
+}
 
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #00ffcc;
+}
 .contenedor {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
